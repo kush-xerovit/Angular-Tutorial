@@ -1,0 +1,14 @@
+<div class="container mt-1">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Login</h1>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col-md-12" *ngFor="let field of fieldConfigs">
+          <div appDynamicField  [formGroup]="form"></div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

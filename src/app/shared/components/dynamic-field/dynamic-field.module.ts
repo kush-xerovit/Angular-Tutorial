@@ -11,6 +11,7 @@ import { CheckBoxComponent } from './check-box/check-box.component'
 
 const components = [
   InputComponent,
+  CheckBoxComponent
 ]
 const directive = [DynamicFieldDirective]
 

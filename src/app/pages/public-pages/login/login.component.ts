@@ -1,14 +1,11 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
-  EventEmitter,
-  Input,
-  Output,
 } from '@angular/core'
 import { FormGroup, Validators } from '@angular/forms'
-import { Subscription } from 'rxjs'
 import { DynamicFieldModel } from 'src/app/shared/components/dynamic-field'
+import { FormService } from 'src/app/shared/services/form/form.service'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -66,15 +63,73 @@ export class LoginComponent implements OnInit {
         },
       ],
     },
+    {
+      label: 'Favourite Frontend Language',
+      name: 'language',
+      type: 'radio',
+      value: 'Angular',
+      options: [
+        { value: 'Angular', text: 'Angular' },
+        { value: 'React', text: 'React' },
+        { value: 'Vuejs', text: 'Vuejs' },
+      ],
+    },
+    {
+      label: 'Type Script',
+      name: 'options',
+      type: 'checkbox',
+      value: '',
+      options: [{ value: 'Type Script', text: 'Type Script' }],
+    },
+    {
+      label: 'Remarks',
+      name: 'remarks',
+      type: 'textarea',
+      placeholder: 'enter short description',
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'Please enter remarks',
+        },
+      ],
+    },
+    {
+      label: 'Favourite Backend Language',
+      name: 'backend',
+      type: 'select',
+      placeholder: 'PHP',
+      options: [
+        { value: 'PHP', text: 'PHP' },
+        { value: 'Nodejs', text: 'Nodejs' },
+        { value: 'Java', text: 'Java' },
+      ],
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'please select backend language',
+        },
+      ],
+    },
+    {
+      name: 'image',
+      type: 'image',
+    },
+
   ]
   constructor(
+    private formService: FormService,
   ) {}
 
   ngOnInit(): void {
+    this.form = this.formService.buildForm(this.fieldConfigs)
     }
 
 
   onSubmit() {
+    if (this.form.invalid)
+    return this.formService.validateAllFormFields(this.form)
   }
 
 }

@@ -34,6 +34,7 @@ export interface Option {
   text: string
   value: string | boolean | number
 }
+
 export interface QueryFilter {
   fieldName: string
   fieldValue: string | boolean | Date

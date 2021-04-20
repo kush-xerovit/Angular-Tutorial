@@ -1,18 +1,31 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core'
 
-// Table module
+// plug-in
+import { ModalModule } from 'ngx-bootstrap/modal'
+import { TooltipModule } from 'ngx-bootstrap/tooltip'
+
+// modules
 import { TableModule } from './components/table/table.module'
 
+// services
+import * as Services from './services'
 
+// Pipe
+import { ShortDateTimePipe } from './pipes/date.pipe'
 
+// components
+import * as Components from './components'
+
+const pipes = [ShortDateTimePipe]
+
+const modules = [TableModule]
+
+const components = [Components.components]
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    TableModule
-  ],
-  exports: [TableModule]
+  declarations: [...components],
+  imports: [ModalModule.forRoot(), TooltipModule.forRoot(), ...modules],
+  providers: [Services.services, ...pipes],
+  exports: [...modules, ...components],
 })
-export class SharedModule { }
+export class SharedModule {}

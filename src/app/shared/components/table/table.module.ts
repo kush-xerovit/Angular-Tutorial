@@ -1,14 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DataTableComponent } from './data-table/data-table.component';
+import { NgModule } from '@angular/core'
 
+// modules
+import { DynamicFieldModule } from '../dynamic-field'
 
+// components
+import { DataTableComponent } from './data-table/data-table.component'
+import { SearchFilterComponent } from './search-filter/search-filter.component'
+import { PaginationComponent } from './pagination/pagination.component'
+
+// Pipe
+import { ShortDateTimePipe } from '../../pipes/date.pipe'
+
+const components = [
+  DataTableComponent,
+  SearchFilterComponent,
+  PaginationComponent,
+  ShortDateTimePipe,
+]
+
+const modules = [DynamicFieldModule]
 
 @NgModule({
-  declarations: [DataTableComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [DataTableComponent],
+  declarations: [...components],
+  imports: [...modules],
+  exports: [...components, ...modules],
 })
-export class TableModule { }
+export class TableModule {}

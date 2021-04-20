@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component'
     SharedModule,
     PublicLayoutModule,
     ReactiveFormsModule
+
   ]
 })
 export class PublicPagesModule { }

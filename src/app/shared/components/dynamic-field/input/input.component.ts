@@ -1,24 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { DynamicFieldModel } from '../dynamic-field.model'
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
-
   @Input()
   formGroup: FormGroup
 
   @Input()
   field: DynamicFieldModel
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode
@@ -35,5 +33,4 @@ export class InputComponent implements OnInit {
       return true
     }
   }
-
 }

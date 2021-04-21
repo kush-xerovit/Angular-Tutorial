@@ -5,6 +5,7 @@ import {
 import { FormGroup, Validators } from '@angular/forms'
 import { DynamicFieldModel } from 'src/app/shared/components/dynamic-field'
 import { FormService } from 'src/app/shared/services/form/form.service'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -115,6 +116,15 @@ export class LoginComponent implements OnInit {
     {
       name: 'image',
       type: 'image',
+    },
+    {
+      label: 'Current Date',
+      name: 'scheduledTime',
+      type: 'date',
+      placeholder: 'current date',
+      class: 'col-md-6',
+      showPicker: true,
+      minDate: moment().toDate(),
     },
 
   ]

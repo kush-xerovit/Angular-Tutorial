@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations' // this is needed!
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule,
     ToastrModule.forRoot({

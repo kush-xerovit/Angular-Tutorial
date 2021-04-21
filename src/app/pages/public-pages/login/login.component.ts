@@ -6,6 +6,8 @@ import { FormGroup, Validators } from '@angular/forms'
 import { DynamicFieldModel } from 'src/app/shared/components/dynamic-field'
 import { FormService } from 'src/app/shared/services/form/form.service'
 import * as moment from 'moment';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -65,6 +67,24 @@ export class LoginComponent implements OnInit {
       ],
     },
     {
+      label: 'NRC',
+      name: 'nrc',
+      type: 'input',
+      placeholder: '12/OUKAMA(N)123456',
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'Please enter nrc',
+        },
+        {
+          name: 'nrcValid',
+          validator: 'nrcValidator',
+          message: 'Invalid nrc',
+        },
+      ],
+    },
+    {
       label: 'Favourite Frontend Language',
       name: 'language',
       type: 'radio',
@@ -77,10 +97,17 @@ export class LoginComponent implements OnInit {
     },
     {
       label: 'Type Script',
-      name: 'options',
+      name: 'Type',
       type: 'checkbox',
-      value: '',
+      value:'',
       options: [{ value: 'Type Script', text: 'Type Script' }],
+    },
+    {
+      label: 'Vanilla Script',
+      name: 'Vanilla',
+      type: 'checkbox',
+      value:'',
+      options: [{ value: 'Vanilla Script', text: 'Vanilla Script' }],
     },
     {
       label: 'Remarks',
@@ -100,6 +127,7 @@ export class LoginComponent implements OnInit {
       name: 'backend',
       type: 'select',
       placeholder: 'PHP',
+      multiple:true,
       options: [
         { value: 'PHP', text: 'PHP' },
         { value: 'Nodejs', text: 'Nodejs' },
@@ -126,10 +154,39 @@ export class LoginComponent implements OnInit {
       showPicker: true,
       minDate: moment().toDate(),
     },
+    {
+      label: 'Description',
+      name: 'description',
+      type: 'texteditor',
+      placeholder: 'Description',
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'Please enter description',
+        },
+      ],
+    },
+    {
+      name: 'material',
+      type: 'material',
+      // inputType: 'gallery',
+      formGroup: [
+        {
+          name: 'url',
+          type: 'input',
+        },
+        {
+          name: 'name',
+          type: 'input',
+        },
+      ],
+    },
 
   ]
   constructor(
     private formService: FormService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -140,6 +197,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.invalid)
     return this.formService.validateAllFormFields(this.form)
+
+    console.log(this.form.value)
+    this.router.navigate([`/about`],{
+      queryParams: { data: JSON.stringify(this.form.value)  },
+    });
   }
 
 }

@@ -5,14 +5,10 @@
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="col-md-12" *ngFor="let field of fieldConfigs">
-          <div
-            appDynamicField
-            [field]="field"
-            [formGroup]="form"></div>
+          <div appDynamicField [field]="field" [formGroup]="form"></div>
         </div>
       </form>
       <app-save-button (click)="onSubmit()"></app-save-button>
     </div>
-
   </div>
 </div>

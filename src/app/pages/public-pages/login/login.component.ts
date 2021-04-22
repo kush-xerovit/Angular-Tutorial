@@ -99,14 +99,14 @@ export class LoginComponent implements OnInit {
       label: 'Type Script',
       name: 'Type',
       type: 'checkbox',
-      value:'',
+      value: '',
       options: [{ value: 'Type Script', text: 'Type Script' }],
     },
     {
       label: 'Vanilla Script',
       name: 'Vanilla',
       type: 'checkbox',
-      value:'',
+      value: '',
       options: [{ value: 'Vanilla Script', text: 'Vanilla Script' }],
     },
     {
@@ -127,7 +127,7 @@ export class LoginComponent implements OnInit {
       name: 'backend',
       type: 'select',
       placeholder: 'PHP',
-      multiple:true,
+      multiple: true,
       options: [
         { value: 'PHP', text: 'PHP' },
         { value: 'Nodejs', text: 'Nodejs' },
@@ -183,7 +183,7 @@ export class LoginComponent implements OnInit {
       ],
     },
     {
-      label:'Tag chip',
+      label: 'Tag chip',
       name: 'label',
       type: 'taginput',
     },
@@ -192,20 +192,20 @@ export class LoginComponent implements OnInit {
   constructor(
     private formService: FormService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formService.buildForm(this.fieldConfigs)
-    }
+  }
 
 
   onSubmit() {
     if (this.form.invalid)
-    return this.formService.validateAllFormFields(this.form)
+      return this.formService.validateAllFormFields(this.form)
 
     console.log(this.form.value)
-    this.router.navigate([`/about`],{
-      queryParams: { data: JSON.stringify(this.form.value)  },
+    this.router.navigate([`/about`], {
+      queryParams: { data: JSON.stringify(this.form.value) },
     });
   }
 
